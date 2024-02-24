@@ -1,3 +1,5 @@
 ---
 
 common_apt_cache_ttl: 604800
+common_git_name:
+common_git_email:
