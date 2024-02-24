@@ -1,0 +1,34 @@
+---
+
+- name: Update apt cache
+  become: true
+  become_user: root
+  ansible.builtin.apt:
+    update_cache: yes
+    cache_valid_time: '{{ common_apt_cache_ttl }}'
+  register: common_apt_update
+
+- name: Update all packages
+  become: true
+  become_user: root
+  ansible.builtin.apt:
+      name: '*'
+      state: latest
+  when: common_apt_update.changed
+
+- name: Ensure git name and email set
+  ansible.builtin.fail: msg="git name and email required"
+  when:
+    - common_git_name is undefined or common_git_email is undefined or not (common_git_email and common_git_name)
+
+- name: Set git name
+  community.general.git_config:
+    name: user.name
+    value: '{{ common_git_name }}'
+    scope: global
+
+- name: Set git email
+  community.general.git_config:
+    name: user.email
+    value: '{{ common_git_email }}'
+    scope: global

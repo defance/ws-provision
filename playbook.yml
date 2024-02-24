@@ -1,0 +1,11 @@
+---
+
+- name: Provision workstation
+  hosts: localhost
+  gather_facts: no
+
+  vars_files:
+    - ./vars/generic.yml
+
+  roles:
+    - common
