@@ -2,7 +2,7 @@
 
 - name: Provision workstation
   hosts: localhost
-  gather_facts: no
+  gather_facts: yes
 
   vars_files:
     - ./vars/generic.yml

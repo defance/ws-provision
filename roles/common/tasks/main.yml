@@ -1,5 +1,12 @@
 ---
 
+- name: get the username running the deploy
+  become: false
+  local_action: command whoami
+  register: username_on_the_host
+  tags:
+    - debug
+
 - name: Update apt cache
   become: true
   become_user: root
@@ -45,4 +52,16 @@
   tags:
     - git
 
-# - name: Verify user ssh key
+- name: ensures .ssh conf dir exists
+  file:
+    path: '/home/{{ ansible_user_id }}/.ssh'
+    state: directory
+  tags:
+    - ssh
+
+- name: Generate secret
+  community.crypto.openssh_keypair:
+    type: '{{ common_user_ssh_type}}'
+    path: '/home/{{ ansible_user_id }}/.ssh/id_{{ common_user_ssh_type }}'
+  tags:
+    - ssh
