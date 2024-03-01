@@ -40,7 +40,7 @@
     block: |
       # Init pyenv just before omz being initalized
       # so that pyenv plugin could find pyenv distro
-      export PYENV_ROOT="$HOME/.pyenv"
+      export PYENV_ROOT="$HOME/{{ python_pyenv_dir }}"
       export PATH="$PYENV_ROOT/bin:$PATH"
       eval "$(pyenv init --path)"
     marker: "# {mark} ANSIBLE MANAGED BLOCK"
