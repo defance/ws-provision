@@ -1,0 +1,50 @@
+- name: change user shell to zsh
+  become: yes
+  user:
+    name: "{{ ansible_user_id }}"
+    shell: /bin/zsh
+  tags:
+    - user
+
+- name: install omz
+  git:
+    repo: '{{ omz_git_repository }}'
+    dest: '{{ common_user_home }}/{{ omz_install_directory }}'
+    update: true
+    accept_hostkey: true
+    version: 'master'
+  tags:
+    - user
+
+- name: copy .zshrc to home dir
+  ansible.builtin.template:
+    src: .zshrc.j2
+    dest: '{{ common_user_home }}/.zshrc'
+  tags:
+    - user
+
+- name: install pyenv
+  git:
+    repo: '{{ python_pyenv_repo }}'
+    dest: '{{ common_user_home }}/{{ python_pyenv_dir }}'
+    update: true
+    accept_hostkey: true
+    version: 'master'
+  tags:
+    - python
+
+- name: configure pyenv
+  ansible.builtin.blockinfile:
+    path: '{{ common_user_home }}/.zshrc'
+    insertbefore: 'source \$ZSH/oh-my-zsh.sh'
+    block: |
+      # Init pyenv just before omz being initalized
+      # so that pyenv plugin could find pyenv distro
+      export PYENV_ROOT="$HOME/.pyenv"
+      export PATH="$PYENV_ROOT/bin:$PATH"
+      eval "$(pyenv init --path)"
+    marker: "# {mark} ANSIBLE MANAGED BLOCK"
+    # append_newline: true
+    # prepend_newline: true
+  tags:
+    - python

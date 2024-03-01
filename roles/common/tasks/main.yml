@@ -17,6 +17,26 @@
   tags:
     - packages
 
+- name: Install essential packages
+  become: true
+  become_user: root
+  ansible.builtin.package:
+    name: '{{ common_apt_packages }}'
+    state: latest
+  tags:
+    - packages
+
+  # TODO: Probably need to install libssl-dev
+
+- name: Install extra packages
+  become: true
+  become_user: root
+  ansible.builtin.package:
+    name: '{{ common_apt_packages_extra }}'
+    state: latest
+  tags:
+    - packages
+
 - name: Update all packages
   become: true
   become_user: root
@@ -54,7 +74,7 @@
 
 - name: ensures .ssh conf dir exists
   file:
-    path: '/home/{{ ansible_user_id }}/.ssh'
+    path: '{{ common_user_home }}/.ssh'
     state: directory
   tags:
     - ssh
@@ -62,6 +82,6 @@
 - name: Generate secret
   community.crypto.openssh_keypair:
     type: '{{ common_user_ssh_type}}'
-    path: '/home/{{ ansible_user_id }}/.ssh/id_{{ common_user_ssh_type }}'
+    path: '{{ common_user_home }}/.ssh/id_{{ common_user_ssh_type }}'
   tags:
     - ssh
