@@ -1,6 +1,2 @@
-omz_git_repository: "https://github.com/robbyrussell/oh-my-zsh.git"
++: "https://github.com/robbyrussell/oh-my-zsh.git"
 omz_install_directory: ".oh-my-zsh"
-
-
-python_pyenv_repo: 'https://github.com/pyenv/pyenv.git'
-python_pyenv_dir: '.pyenv'

@@ -10,3 +10,6 @@
   roles:
     - common
     - user
+    - role: git
+      when: git_do_config
+    - python

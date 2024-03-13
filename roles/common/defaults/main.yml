@@ -1,12 +1,14 @@
 ---
 
+common_user_home: '/home/{{ ansible_user_id }}'
+
 common_apt_cache_ttl: 604800
 common_apt_packages:
   - git
   - build-essential
   - zlib1g-dev
   - libffi-dev
-  # - libssl-dev
+  - libssl-dev
   - libbz2-dev
   - libreadline-dev
   - libsqlite3-dev
@@ -18,8 +20,5 @@ common_apt_packages:
   - zsh
 common_apt_packages_extra: []
 
-common_git_name:
-common_git_email:
+common_user_ssh_do_config: yes
 common_user_ssh_type: rsa
-
-common_user_home: '/home/{{ ansible_user_id }}'

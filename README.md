@@ -11,11 +11,15 @@ ansible-playbook ./playbook.yaml -K
 
 # TODO
 
-- install lib libssl-dev
 - configure omz plugins + extra
 - configure omz theme
 - poetry specific version
 - global gitignore
 - vscode global settings
 - fzf
+- optional docker
 - docker-compose
+    - add databases with users
+    - add network
+    - add volumes
+    - add smtp4dev
