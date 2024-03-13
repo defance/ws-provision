@@ -1,2 +1,2 @@
-+: "https://github.com/robbyrussell/oh-my-zsh.git"
+omz_git_repository: "https://github.com/robbyrussell/oh-my-zsh.git"
 omz_install_directory: ".oh-my-zsh"
