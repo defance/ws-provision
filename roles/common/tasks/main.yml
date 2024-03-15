@@ -7,14 +7,6 @@
   tags:
     - debug
 
-- name: set a hostname
-  become: true
-  ansible.builtin.hostname:
-    name: '{{ common_hostname }}'
-  tags:
-    - debug
-  when: common_hostname
-
 - name: Update apt cache
   become: true
   become_user: root

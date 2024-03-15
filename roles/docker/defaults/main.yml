@@ -1,2 +1,4 @@
+docker_do_configure: no
+
 docker_networks: []
 docker_images: []

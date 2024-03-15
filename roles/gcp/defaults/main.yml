@@ -1,2 +1,5 @@
 gcp_do_install: no
 gcp_configure_docker_registry: []
+
+gcp_kubectl_do_install: no
+gcp_gcloud_kubectl_auth_do_install: no

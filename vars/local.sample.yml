@@ -1,0 +1,105 @@
+# Common
+# =====================================================================
+
+# Base home dir; probably should never be overriden, but placed here for convinience
+# common_user_home: '/home/{{ ansible_user_id }}'
+
+# How long apt cache shoul live
+# common_apt_cache_ttl: 604800
+
+# Extra packages to instal along with essential ones
+# common_apt_packages_extra: []
+
+# Whether ssh key should be configures
+# common_user_ssh_do_config: no
+
+# SSH key type
+# common_user_ssh_type: ed25519
+
+
+# Git
+# =====================================================================
+
+# Whether git should be configured
+# git_do_config: no
+
+# Git name (required if git should be configured)
+# git_name: 'John Doe'
+
+# Git email (required if git should be configured)
+# git_email: 'john@example.com'
+
+
+# User
+# =====================================================================
+
+# Specific dirs to create
+# user_dirs:
+#   - '{{ common_user_home }}/dev'
+
+# Whether to install zsh
+# zsh_do_install: no
+
+# Whether to install omz
+# omz_do_install: no
+
+# Whether to install fzf
+# fzf_do_install: no
+
+
+# Python
+# =====================================================================
+
+# Whether to install python stuff (pyenv, actually)
+# python_do_install: no
+
+# Python versions to pre-install
+# python_versions:
+#   - '3.12'
+
+# Whether to install poetry (not installed, when no python stuff installed)
+# python_poetry_do_install: no
+
+# Specific Poetry version, latest if blank
+# python_poetry_version: ''
+
+
+# GCP
+# =====================================================================
+
+# Whether to install google-cloud-cli
+# gcp_do_install: no
+
+# Whether to install kubectl
+# gcp_kubectl_do_install: no
+
+# Wthether to install gcloud auth plugin for kubectl 
+# gcp_gcloud_kubectl_auth_do_install: no
+
+# Authourize in docker registries via gcloud (requires kubectl and gcloud auth plugin for kubectl)
+# gcp_configure_docker_registry: []
+
+
+# Docker
+# =====================================================================
+
+# Whether to configure docker stuff
+# docker_do_configure: no
+
+# Docker networks to pre-create
+# docker_networks: 
+#   - local-project-net
+
+# Docker images to pre-pull; May fail if some images require interactive registry pre-auth; All errors are ignored
+# docker_images:
+#   - hello-world
+
+
+# k9s
+# =====================================================================
+
+# Whether to install k9s
+# k9s_do_install: no
+
+# Specific k9s; it uses git hub releases, so it ca be updated manually only
+# k9s_version: '0.32.3'

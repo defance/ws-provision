@@ -8,11 +8,25 @@
     - debug
   with_items: '{{ user_dirs }}'
 
+- name: install zsh package
+  become: true
+  ansible.builtin.package:
+    name: '{{ item }}'
+    state: latest
+  with_items:
+    - zsh
+  when:
+    - zsh_do_install
+  tags:
+    - zsh
+
 - name: change user shell to zsh
   become: yes
   user:
     name: "{{ ansible_user_id }}"
     shell: /bin/zsh
+  when:
+    - zsh_do_install
   tags:
     - user
     - zsh
@@ -24,6 +38,9 @@
     update: true
     accept_hostkey: true
     version: 'master'
+  when:
+    - zsh_do_install
+    - omz_do_install
   tags:
     - user
     - omz
@@ -32,6 +49,9 @@
   ansible.builtin.template:
     src: .zshrc.j2
     dest: '{{ common_user_home }}/.zshrc'
+  when:
+    - zsh_do_install
+    - omz_do_install
   tags:
     - user
     - omz

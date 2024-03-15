@@ -1,14 +1,15 @@
 user_dirs: []
 
+zsh_do_install: no
+
+omz_do_install: no
 omz_git_repository: "https://github.com/robbyrussell/oh-my-zsh.git"
 omz_install_directory: ".oh-my-zsh"
+omz_plugins_default:
+  - git
+  - fzf
+omz_plugins_extra: []
 
 fzf_do_install: yes
 fzf_git_repository: 'https://github.com/junegunn/fzf.git'
 fzf_install_directory: '.fzf'
-
-omz_plugins_default:
-  - git
-  - fzf
-
-omz_plugins_extra: []

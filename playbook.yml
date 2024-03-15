@@ -16,6 +16,7 @@
       when: python_do_install
     - role: gcp
       when: gcp_do_install
-    - docker
+    - role: docker
+      when: docker_do_configure
     - role: k9s
       when: k9s_do_install

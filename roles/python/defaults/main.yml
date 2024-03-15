@@ -6,5 +6,5 @@ python_versions: []
 
 python_pyenv_virtualenv_repo: 'https://github.com/pyenv/pyenv-virtualenv.git'
 
-python_poetry_do_install: yes
+python_poetry_do_install: no
 python_poetry_version: ''
