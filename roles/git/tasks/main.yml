@@ -22,3 +22,13 @@
     scope: global
   tags:
     - git
+
+- name: Configure default key
+  community.general.git_config:
+    name: core.sshCommand
+    value: 'ssh -i ~/.ssh/{{ common_user_ssh_prefix }}id_{{ common_user_ssh_type }}'
+    scope: global
+  when:
+    - common_user_ssh_do_config
+  tags:
+    - git
