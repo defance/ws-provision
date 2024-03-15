@@ -1,3 +1,13 @@
+- name: Creates directory
+  ansible.builtin.file:
+    path: '{{ item }}'
+    state: directory
+    recurse: yes
+  tags:
+    - user
+    - debug
+  with_items: '{{ user_dirs }}'
+
 - name: change user shell to zsh
   become: yes
   user:
@@ -5,6 +15,7 @@
     shell: /bin/zsh
   tags:
     - user
+    - zsh
 
 - name: install omz
   git:
@@ -15,6 +26,7 @@
     version: 'master'
   tags:
     - user
+    - omz
 
 - name: copy .zshrc to home dir
   ansible.builtin.template:
@@ -22,3 +34,27 @@
     dest: '{{ common_user_home }}/.zshrc'
   tags:
     - user
+    - omz
+    - rc
+
+- name: install fzf - clone repo
+  git:
+    repo: '{{ fzf_git_repository }}'
+    dest: '{{ common_user_home }}/{{ fzf_install_directory }}'
+    update: true
+    accept_hostkey: true
+    version: 'master'
+  tags:
+    - user
+    - fzf
+  when:
+    - fzf_do_install
+
+- name: configure fzf
+  command:
+    cmd: '{{ common_user_home }}/{{ fzf_install_directory }}/install --completion --key-bindings --update-rc'
+  tags:
+    - user
+    - fzf
+  when:
+    - fzf_do_install

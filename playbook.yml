@@ -13,3 +13,8 @@
     - role: git
       when: git_do_config
     - python
+    - role: gcp
+      when: gcp_do_install
+    - docker
+    - role: k9s
+      when: k9s_do_install

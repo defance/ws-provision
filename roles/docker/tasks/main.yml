@@ -1,0 +1,16 @@
+---
+
+- name: Create docker networks
+  docker_network:
+    name: '{{ item }}'
+  with_items: '{{ docker_networks }}'
+  tags:
+    - docker
+
+- name: Pull docker images
+  command:
+    cmd: 'docker image pull {{ item }}'
+  with_items: '{{ docker_images }}'
+  ignore_errors: yes
+  tags:
+    - docker

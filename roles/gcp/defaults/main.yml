@@ -1,0 +1,2 @@
+gcp_do_install: no
+gcp_configure_docker_registry: []

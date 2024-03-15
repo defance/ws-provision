@@ -1,5 +1,6 @@
 ---
 
+common_hostname: ''
 common_user_home: '/home/{{ ansible_user_id }}'
 
 common_apt_cache_ttl: 604800
@@ -18,6 +19,7 @@ common_apt_packages:
   - ca-certificates
   - gnupg
   - zsh
+  - python3-pip
 common_apt_packages_extra: []
 
 common_user_ssh_do_config: yes
