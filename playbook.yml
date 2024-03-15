@@ -12,7 +12,8 @@
     - user
     - role: git
       when: git_do_config
-    - python
+    - role: python
+      when: python_do_install
     - role: gcp
       when: gcp_do_install
     - docker

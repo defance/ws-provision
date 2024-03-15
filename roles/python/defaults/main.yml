@@ -1,3 +1,10 @@
+python_do_install: no
+
 python_pyenv_repo: 'https://github.com/pyenv/pyenv.git'
 python_pyenv_dir: '.pyenv'
 python_versions: []
+
+python_pyenv_virtualenv_repo: 'https://github.com/pyenv/pyenv-virtualenv.git'
+
+python_poetry_do_install: yes
+python_poetry_version: ''

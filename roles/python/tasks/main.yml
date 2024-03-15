@@ -25,9 +25,55 @@
   tags:
     - python
 
+- name: install pyenv 
+  git:
+    repo: '{{ python_pyenv_virtualenv_repo }}'
+    dest: '{{ common_user_home }}/{{ python_pyenv_dir }}/plugins/pyenv-virtualenv'
+    update: yes
+    accept_hostkey: true
+    version: 'master'
+  tags:
+    - python
+
 - name: install python versions
   command:
     cmd: '{{ common_user_home }}/{{ python_pyenv_dir }}/bin/pyenv install -s {{ item }}'
   with_items: '{{ python_versions }}'
+  tags:
+    - python
+
+- name: prepare poetry env
+  command:
+    cmd: '{{ common_user_home }}/{{ python_pyenv_dir }}/bin/pyenv virtualenv poetry'
+    creates: '{{ common_user_home }}/{{ python_pyenv_dir }}/versions/poetry'
+  when:
+    - python_poetry_do_install
+  tags:
+    - python
+
+- name: prepare poetry env
+  command:
+    cmd: '{{ common_user_home }}/{{ python_pyenv_dir }}/bin/pyenv virtualenv poetry'
+    creates: '{{ common_user_home }}/{{ python_pyenv_dir }}/versions/poetry'
+  when:
+    - python_poetry_do_install
+  tags:
+    - python
+
+- name: install poetry
+  command:
+    cmd: '{{ common_user_home }}/{{ python_pyenv_dir }}/versions/poetry/bin/pip install poetry{% if python_poetry_version %}=={{ python_poetry_version }}{% else %} --upgrade{% endif %}'
+  when:
+    - python_poetry_do_install
+  tags:
+    - python
+
+- name: link poetry
+  file:
+    src: '{{ common_user_home }}/{{ python_pyenv_dir }}/versions/poetry/bin/poetry' 
+    dest: '{{ common_user_home }}/.local/bin/poetry'
+    state: link
+  when:
+    - python_poetry_do_install
   tags:
     - python
