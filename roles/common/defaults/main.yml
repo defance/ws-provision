@@ -22,4 +22,5 @@ common_apt_packages:
 common_apt_packages_extra: []
 
 common_user_ssh_do_config: no
+common_user_ssh_key_prefix: ''
 common_user_ssh_type: rsa

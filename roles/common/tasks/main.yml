@@ -58,7 +58,7 @@
 - name: Generate secret
   community.crypto.openssh_keypair:
     type: '{{ common_user_ssh_type}}'
-    path: '{{ common_user_home }}/.ssh/id_{{ common_user_ssh_type }}'
+    path: '{{ common_user_home }}/.ssh/{{ common_user_ssh_prefix }}id_{{ common_user_ssh_type }}'
   when:
     - common_user_ssh_do_config
   tags:

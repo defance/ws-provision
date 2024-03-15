@@ -16,6 +16,9 @@
 # SSH key type
 # common_user_ssh_type: ed25519
 
+# SSH key prefix
+# common_user_ssh_prefix: ''
+
 
 # Git
 # =====================================================================
